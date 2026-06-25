@@ -25,13 +25,6 @@
       CardiovasHora
     </a>
 
-    <!-- Desktop nav links -->
-    <ul class="nav-links" role="list">
-      <li><a href="#assessment" data-page="assessment">📋 ประเมินความเสี่ยง</a></li>
-      <li><a href="#chatbot"    data-page="chatbot">🤖 AI Chatbot</a></li>
-      <li><a href="#dashboard"  data-page="dashboard">📊 Dashboard</a></li>
-    </ul>
-
     <!-- Actions -->
     <div class="nav-actions">
       <button class="btn-darkmode" aria-label="Toggle dark mode">🌙</button>
@@ -44,8 +37,21 @@
   </div>
 </nav>
 
+<aside class="sidebar-nav" id="sidebar-nav" aria-label="Desktop navigation">
+  <button class="sidebar-toggle" id="sidebar-toggle" aria-expanded="true" type="button">
+    ☰
+  </button>
+  <ul class="sidebar-links" role="list">
+    <li><a href="#intro" data-page="intro"><span class="icon">🏠</span><span class="link-text">หน้าแรก</span></a></li>
+    <li><a href="#assessment" data-page="assessment"><span class="icon">📋</span><span class="link-text">ประเมินความเสี่ยง</span></a></li>
+    <li><a href="#chatbot" data-page="chatbot"><span class="icon">🤖</span><span class="link-text">AI Chatbot</span></a></li>
+    <li><a href="#dashboard" data-page="dashboard"><span class="icon">📊</span><span class="link-text">Dashboard</span></a></li>
+  </ul>
+</aside>
+
 <!-- Mobile dropdown nav -->
 <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+  <a href="#intro" data-page="intro">🏠 หน้าแรก</a>
   <a href="#assessment" data-page="assessment">📋 ประเมินความเสี่ยง</a>
   <a href="#chatbot"    data-page="chatbot">🤖 AI Chatbot</a>
   <a href="#dashboard"  data-page="dashboard">📊 Dashboard</a>

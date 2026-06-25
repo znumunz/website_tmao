@@ -43,14 +43,19 @@ const Router = (() => {
       setTimeout(() => target.classList.remove('fade-up'), 400);
     }
 
-    // Toggle navbar visibility
+    // Toggle navbar and sidebar visibility
     const navbar = document.getElementById('navbar');
+    const sidebar = document.getElementById('sidebar-nav');
     if (page === 'login') {
       navbar.style.display = 'none';
+      if (sidebar) sidebar.style.display = 'none';
+      document.body.classList.remove('sidebar-visible');
     } else {
       navbar.style.display = '';
+      if (sidebar) sidebar.style.display = '';
+      document.body.classList.add('sidebar-visible');
       // Update active nav link
-      $$('.nav-links a').forEach(a => {
+      $$('.nav-links a, .sidebar-links a').forEach(a => {
         a.classList.toggle('active', a.dataset.page === page);
       });
     }
@@ -557,16 +562,68 @@ const Chatbot = (() => {
     return RESPONSES.default;
   }
 
+  // function formatWebhookResult(data) {
+  //   if (typeof data === 'string') return data;
+  //   if (Array.isArray(data)) {
+  //   const first = data[0];
+  //   return first?.output || first?.answer || first?.message || first?.text || JSON.stringify(first, null, 2);
+  //   }
+  //   if (data == null) return 'ไม่มีข้อมูลตอบกลับจากเซิร์ฟเวอร์';
+  //   if (typeof data === 'object') {
+  //     return data.answer || data.message || data.text || data.output || data.result || JSON.stringify(data, null, 2);
+  //   }
+  //   return String(data);
+  
   function formatWebhookResult(data) {
-    if (typeof data === 'string') return data;
-    if (Array.isArray(data)) return data.join('\n');
-    if (data == null) return 'ไม่มีข้อมูลตอบกลับจากเซิร์ฟเวอร์';
-    if (typeof data === 'object') {
-      return data.answer || data.message || data.text || data.output || data.result || JSON.stringify(data, null, 2);
+    if (data == null) {
+      return 'ไม่มีข้อมูลตอบกลับจากเซิร์ฟเวอร์';
     }
+
+    if (typeof data === 'string') {
+      return data;
+    }
+
+    // เพิ่มตรงนี้ — n8n ส่งกลับเป็น Array
+    if (Array.isArray(data)) {
+      const first = data[0];
+      return first?.output || first?.answer || first?.message || first?.text || JSON.stringify(data, null, 2);
+    }
+
+    if (typeof data === 'object') {
+      return (
+        data.output ||
+        data.answer ||
+        data.message ||
+        data.text ||
+        data.result ||
+        JSON.stringify(data, null, 2)
+      );
+    }
+
     return String(data);
   }
 
+  // async function requestWebhook(message) {
+  //   const response = await fetch(WEBHOOK_URL, {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ question: message })
+  //   });
+
+  //   if (!response.ok) {
+  //     const bodyText = await response.text();
+  //     throw new Error(`${response.status} ${response.statusText}: ${bodyText}`);
+  //   }
+
+  //   const contentType = response.headers.get('content-type') || '';
+  //   if (contentType.includes('application/json')) {
+  //       const text = await response.text();      // เปลี่ยนจาก response.json()
+  //       console.log('RAW:', text);
+  //       const data = JSON.parse(text);           // เปลี่ยนจาก response.json()
+  //     return formatWebhookResult(data);
+  //   }
+  //   return await response.text(); 
+  // }
   async function requestWebhook(message) {
     const response = await fetch(WEBHOOK_URL, {
       method: 'POST',
@@ -578,13 +635,9 @@ const Chatbot = (() => {
       const bodyText = await response.text();
       throw new Error(`${response.status} ${response.statusText}: ${bodyText}`);
     }
-
-    const contentType = response.headers.get('content-type') || '';
-    if (contentType.includes('application/json')) {
-      const data = await response.json();
-      return formatWebhookResult(data);
-    }
-    return await response.text();
+    const text = await response.text();
+    console.log('GOT:', text);  // ← เพิ่มบรรทัดนี้
+    return text;
   }
 
   function appendBubble(role, text) {
@@ -636,12 +689,13 @@ const Chatbot = (() => {
       const result = await requestWebhook(msg);
       hideTyping();
       appendBubble('ai', result);
-    } catch (err) {
+    } 
+      catch (err) {
       hideTyping();
       appendBubble('ai', `เกิดข้อผิดพลาดในการเชื่อมต่อ: ${err.message}\n\nกำลังตอบกลับจากระบบสำรอง (local fallback)`);
       appendBubble('ai', getResponse(msg));
     }
-  }
+}
 
   function init() {
     if (_inited) return;
@@ -688,13 +742,41 @@ const MobileNav = (() => {
   return { init };
 })();
 
+/* ─────────────────────────────────────────────────────────── */
+/* 9. DESKTOP SIDEBAR ─────────────────────────────────────── */
+const DesktopSidebar = (() => {
+  let _collapsed = false;
+
+  function toggle() {
+    _collapsed = !_collapsed;
+    document.body.classList.toggle('sidebar-collapsed', _collapsed);
+    document.getElementById('sidebar-toggle')?.setAttribute('aria-expanded', String(!_collapsed));
+  }
+
+  function init() {
+    const toggleButton = document.getElementById('sidebar-toggle');
+    if (!toggleButton) return;
+    toggleButton.addEventListener('click', toggle);
+
+    document.addEventListener('click', e => {
+      const link = e.target.closest('.sidebar-links a');
+      if (link) {
+        document.getElementById('sidebar-nav')?.classList.remove('open');
+      }
+    });
+  }
+
+  return { init };
+})();
+
 
 /* ─────────────────────────────────────────────────────────── */
-/* 9. BOOT ────────────────────────────────────────────────── */
+/* 10. BOOT ────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   Theme.init();
   MobileNav.init();
   LoginPage.init();
+  DesktopSidebar.init();
   Router.init();
 });
 
