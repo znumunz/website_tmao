@@ -24,6 +24,7 @@ const Router = (() => {
     login:      'page-login',
     intro:      'page-intro',
     assessment: 'page-assessment',
+    results:    'page-results',
     dashboard:  'page-dashboard',
     chatbot:    'page-chatbot',
   };
@@ -353,7 +354,7 @@ const Form = (() => {
         btn.textContent = 'ประเมินผลความเสี่ยง';
         btn.disabled = false;
       }
-      Router.navigate('dashboard');
+      Router.navigate('results');
     }, 1500);
   }
 
