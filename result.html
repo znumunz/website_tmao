@@ -1,0 +1,141 @@
+﻿<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CardiovasHora — AI-Powered Cardiovascular Risk Prediction สำหรับแพทย์">
+  <title>CardiovasHora | Results</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/result.css">
+  <script>window.APP_ROOT = './';</script>
+</head>
+<body class="sidebar-visible" data-page="results">
+  <div data-navbar-slot></div>
+
+  <section id="page-results" class="page" aria-label="AI Risk Assessment Results">
+    <div class="dash-header">
+      <div class="container">
+        <div class="flex-between">
+          <div>
+            <h1 class="dash-title">AI Risk Assessment Results</h1>
+            <p class="dash-sub">Your personalized cardiovascular risk analysis and recommendations</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn btn-outline" style="font-size:0.82rem" type="button">⬇️ Download PDF</button>
+            <button class="btn btn-accent" style="font-size:0.82rem" type="button">👨‍⚕️ Share</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+      <div class="container">
+        <div style="background:linear-gradient(135deg,#FF6B35 0%,#F7350F 100%);border-radius:var(--radius-lg);padding:2rem;color:white;margin-bottom:1.5rem">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+              <h3 style="display:flex;align-items:center;gap:0.5rem;margin-bottom:1.5rem;font-size:1.1rem">
+                <span>❤️</span> 10-Year Cardiovascular Mortality Risk
+              </h3>
+              <div style="position:relative;width:150px;height:150px;margin-bottom:1rem">
+                <svg viewBox="0 0 100 100" style="width:100%;height:100%;transform:rotate(-90deg)">
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="8"/>
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-width="8" stroke-dasharray="141 314" stroke-linecap="round"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <div style="font-size:2.5rem;font-weight:800">32%</div>
+                  <div style="font-size:0.9rem;opacity:0.9">High Risk</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:1rem">
+              <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:var(--radius-md);padding:1.2rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.9rem;opacity:0.9">
+                  <span>🎯</span> AI Confidence Score
+                </div>
+                <div style="font-size:2rem;font-weight:700">94%</div>
+                <div style="font-size:0.8rem;opacity:0.85;margin-top:0.3rem">High confidence prediction based on your data</div>
+              </div>
+              <div style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);border-radius:var(--radius-md);padding:1.2rem">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;font-size:0.9rem;opacity:0.9">
+                  <span>⚠️</span> Risk Interpretation
+                </div>
+                <div style="font-size:0.95rem;line-height:1.5">Immediate consultation with a cardiologist is recommended</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap">
+            <button class="btn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);font-weight:600" type="button">
+              ⬇️ Download PDF Report
+            </button>
+            <button class="btn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);font-weight:600" type="button">
+              👨‍⚕️ Share with Doctor
+            </button>
+            <button class="btn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);font-weight:600" data-page="assessment" type="button">
+              🔄 Reassess Risk
+            </button>
+          </div>
+        </div>
+
+        <h3 style="font-size:1.2rem;font-weight:700;margin-bottom:1rem">Personalized Recommendations</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:1.5rem">
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem">
+              <div style="width:40px;height:40px;background:#10B981;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem">✅</div>
+              <h4 style="font-weight:700;font-size:1rem">Nutrition</h4>
+            </div>
+            <ul style="font-size:0.9rem;line-height:1.8;color:var(--text-muted)">
+              <li style="margin-bottom:0.5rem">• Reduce red meat intake (lowers TMAO)</li>
+              <li style="margin-bottom:0.5rem">• Increase omega-3 fatty acids</li>
+              <li style="margin-bottom:0.5rem">• Mediterranean diet recommended</li>
+              <li>• Limit processed foods</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem">
+              <div style="width:40px;height:40px;background:#2563EB;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem">🏃</div>
+              <h4 style="font-weight:700;font-size:1rem">Exercise</h4>
+            </div>
+            <ul style="font-size:0.9rem;line-height:1.8;color:var(--text-muted)">
+              <li style="margin-bottom:0.5rem">• 150 min moderate aerobic activity/week</li>
+              <li style="margin-bottom:0.5rem">• Strength training 2x per week</li>
+              <li style="margin-bottom:0.5rem">• Walking 10,000 steps daily</li>
+              <li>• Reduce sedentary time</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem">
+              <div style="width:40px;height:40px;background:#9333EA;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem">💜</div>
+              <h4 style="font-weight:700;font-size:1rem">Lifestyle</h4>
+            </div>
+            <ul style="font-size:0.9rem;line-height:1.8;color:var(--text-muted)">
+              <li style="margin-bottom:0.5rem">• Quit smoking immediately</li>
+              <li style="margin-bottom:0.5rem">• Stress management techniques</li>
+              <li style="margin-bottom:0.5rem">• 7–9 hours quality sleep</li>
+              <li>• Regular health check-ups</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-elevated);border-left:4px solid var(--color-primary);border-radius:var(--radius-md);padding:1rem;font-size:0.95rem">
+          <strong style="color:var(--color-primary)">📅 Next Steps:</strong> <span style="color:var(--text-muted)">Schedule an appointment with a cardiologist to discuss these results and create a comprehensive prevention plan. Consider starting statin therapy and implementing dietary changes to lower TMAO levels.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/api/api.js"></script>
+  <script src="js/common/router.js"></script>
+  <script src="js/api/auth.js"></script>
+  <script src="js/pages/result.js"></script>
+</body>
+</html>
+
+

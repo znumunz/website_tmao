@@ -1,0 +1,36 @@
+﻿.page {
+  display: block;
+  min-height: auto;
+}
+
+/* ── 16. DASHBOARD ────────────────────────────────────────── */
+.dash-header {
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+  margin-bottom: 1.5rem;
+}
+.dash-title { font-size: 1.6rem; font-weight: 800; color: var(--color-primary); }
+.dash-sub   { font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem; }
+.dash-content { padding: 0 0 3rem; }
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.55rem 1rem;
+  background: var(--bg-surface);
+  flex: 1;
+  max-width: 340px;
+}
+.search-bar input {
+  border: none;
+  background: none;
+  padding: 0;
+  font-size: 0.88rem;
+}
+.search-bar input:focus { box-shadow: none; }
+.search-bar .search-icon { color: var(--text-muted); font-size: 0.9rem; }
+
+

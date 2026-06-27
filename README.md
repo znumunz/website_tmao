@@ -1,42 +1,89 @@
 # CardiovasHora
 
-เว็บแอป "CardiovasHora" เป็นหน้าเว็บสเตติกสำหรับการประเมินความเสี่ยงโรคหัวใจและหลอดเลือดด้วย AI โดยเน้น UX/UI สำหรับผู้ใช้งานหลักเป็นแพทย์และทีมดูแลสุขภาพ
+CardiovasHora is a static HTML, CSS, and Vanilla JavaScript web app for cardiovascular risk assessment, AI result display, dashboard views, and an n8n-powered AI chatbot.
 
-## โครงสร้างโปรเจกต์
+The project is currently frontend-only. There is no real authentication, database, Supabase, Firebase, FastAPI, or REST backend integration yet.
 
-- `index.html` - หน้าเว็บหลักของแอป
-- `style.css` - สไตล์สำหรับหน้าเว็บทั้งหมด
-- `app.js` - ฟังก์ชัน JavaScript สำหรับการนำทางแบบ SPA, การล็อกอินจำลอง, การสลับธีม, การกรอกฟอร์ม และ UI ส่วนอื่น ๆ
+## Project Structure
 
+```text
+CardiovasHora/
+|-- index.html
+|-- login.html
+|-- dashboard.html
+|-- predict.html
+|-- result.html
+|-- chatbot.html
+|-- css/
+|   |-- global.css
+|   |-- index.css
+|   |-- login.css
+|   |-- dashboard.css
+|   |-- predict.css
+|   |-- result.css
+|   `-- chatbot.css
+|-- js/
+|   |-- config.js
+|   |-- api/
+|   |   |-- api.js
+|   |   |-- auth.js
+|   |   `-- chatbot.js
+|   |-- common/
+|   |   `-- router.js
+|   |-- services/
+|   |   `-- assessment.js
+|   `-- pages/
+|       |-- index.js
+|       |-- login.js
+|       |-- dashboard.js
+|       |-- predict.js
+|       |-- result.js
+|       `-- chatbot.js
+|-- components/
+|   `-- navbar.html
+|-- assets/
+|   |-- images/
+|   |-- icons/
+|   `-- fonts/
+`-- README.md
+```
 
-## ฟีเจอร์หลัก
+## How Files Connect
 
-- หน้าเข้าสู่ระบบ/ลงทะเบียน แบบฟอร์มล็อกอินจำลอง
-- เมนูนำทาง SPA ไปยังส่วนต่าง ๆ ของเว็บ เช่น การประเมินความเสี่ยง, Chatbot, Dashboard
-- โหมดมืด/สว่าง
-- UI ที่ตอบสนองสำหรับอุปกรณ์มือถือและเดสก์ท็อป
-- การแสดงข้อมูลเชิงสรุปเกี่ยวกับ TMAO และการทำนายความเสี่ยง
+- Each HTML file represents one page and loads `css/global.css`, its own page CSS file, shared JavaScript, and its own page script.
+- `components/navbar.html` is injected by `js/common/router.js` on pages that include a navbar slot.
+- `js/common/router.js` handles page navigation, dark mode, mobile menu, sidebar state, and logout routing.
+- `js/api/auth.js` keeps the current mock login behavior using `sessionStorage`.
+- `js/api/chatbot.js` contains the existing n8n webhook communication. The webhook URL is unchanged.
+- `js/pages/chatbot.js` handles only chatbot UI interactions and calls `AppChatbotApi`.
+- `js/services/assessment.js` contains reusable BMI and assessment validation logic.
+- `js/config.js` stores shared app configuration such as the chatbot webhook URL.
 
-## วิธีใช้งาน
+## Pages
 
-1. เปิดไฟล์ `index.html` ในเว็บเบราว์เซอร์
-2. หากต้องการเรียกใช้งานจากเซิร์ฟเวอร์ท้องถิ่น ให้ใช้เครื่องมือที่รองรับ เช่น Live Server ใน VS Code หรือ Python HTTP server
+- `index.html` - Intro / landing page
+- `login.html` - Login UI only
+- `dashboard.html` - Doctor and researcher dashboard
+- `predict.html` - Patient assessment form
+- `result.html` - AI risk assessment results
+- `chatbot.html` - AI chatbot connected to n8n
 
-### ตัวอย่างการใช้งานกับ Python
+## Run Locally
+
+Run a local static server from the project root:
 
 ```powershell
-cd c:\Users\WINDOWS\OneDrive\Documents\website\website_tmao
 python -m http.server 8000
 ```
 
-แล้วเปิด: `http://localhost:8000`
+Then open:
 
-## ปรับแต่งและขยายโปรเจกต์
+```text
+http://localhost:8000
+```
 
-- หากต้องการเชื่อมต่อกับ Backend จริง ให้แก้ไขส่วน `Auth` ใน `app.js`
-- สำหรับโมเดล AI หรือการเก็บข้อมูล ให้เพิ่ม API call ในฟังก์ชันที่เกี่ยวข้อง เช่น ฟอร์มประเมินหรือ Chatbot
-- สามารถเพิ่มไฟล์ JavaScript/CSS ใหม่ในโฟลเดอร์ `js/` และ `pages/` ตามความต้องการ
+## Notes
 
-## หมายเหตุ
-
-โปรเจกต์นี้เป็นต้นแบบเว็บแอปแบบสเตติก ปัจจุบันมีการทำงานแบบจำลองภายในเครื่อง หากต้องการใช้งานจริงควรเชื่อมต่อระบบหลังบ้านและฐานข้อมูล พร้อมเพิ่มระบบรักษาความปลอดภัย
+- The login page is UI-only and does not authenticate against a backend.
+- The chatbot still uses the existing n8n webhook.
+- Backend integrations should be added through `js/api/` in the future.

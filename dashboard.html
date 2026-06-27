@@ -1,0 +1,92 @@
+﻿<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CardiovasHora — AI-Powered Cardiovascular Risk Prediction สำหรับแพทย์">
+  <title>CardiovasHora | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script>window.APP_ROOT = './';</script>
+</head>
+<body class="sidebar-visible" data-page="dashboard">
+  <div data-navbar-slot></div>
+
+  <section id="page-dashboard" class="page" aria-label="Doctor Dashboard">
+    <div class="dash-header">
+      <div class="container">
+        <div class="flex-between">
+          <div>
+            <h1 class="dash-title">Doctor &amp; Researcher Dashboard</h1>
+            <p class="dash-sub">Analytics and insights for cardiovascular risk assessment</p>
+          </div>
+          <div class="flex gap-2">
+            <button class="btn btn-outline" style="font-size:0.82rem" type="button">🔍 Filter</button>
+            <button class="btn btn-accent" style="font-size:0.82rem" type="button">⬇️ Export</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+      <div class="container">
+        <div class="grid-2" style="margin-bottom:1.5rem;align-items:stretch">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Risk Distribution</span>
+              <button class="btn btn-outline" style="font-size:0.75rem;padding:0.3rem 0.8rem" type="button">⬇️ Export</button>
+            </div>
+            <div id="donut-chart" style="flex:1"></div>
+          </div>
+          <div id="stat-cards" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem">
+            <div class="stat-card skeleton" style="height:150px"></div>
+            <div class="stat-card skeleton" style="height:150px"></div>
+            <div class="stat-card skeleton" style="height:150px"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span class="card-title">Recent Assessments</span>
+            <div class="flex gap-2">
+              <div class="search-bar">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="patient-search" placeholder="ค้นหาผู้ป่วย..." aria-label="Search patients">
+              </div>
+              <button class="btn btn-outline" style="font-size:0.8rem" type="button">Filter</button>
+              <button class="btn btn-outline" style="font-size:0.8rem" type="button">Export</button>
+            </div>
+          </div>
+          <div style="overflow-x:auto">
+            <table class="data-table" role="table" aria-label="Recent patient assessments">
+              <thead>
+                <tr>
+                  <th>Assessment ID</th>
+                  <th>ชื่อผู้ป่วย</th>
+                  <th>อายุ</th>
+                  <th>Risk Score</th>
+                  <th>Risk Level</th>
+                  <th>วันที่</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="patient-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/api/api.js"></script>
+  <script src="js/common/router.js"></script>
+  <script src="js/api/auth.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+</body>
+</html>
+
+

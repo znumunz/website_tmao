@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CardiovasHora — AI-Powered Cardiovascular Risk Prediction สำหรับแพทย์">
+  <title>CardiovasHora | Login</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/login.css">
+  <script>window.APP_ROOT = './';</script>
+</head>
+<body data-page="login">
+  <section id="page-login" class="page active" aria-label="Login page">
+    <div class="login-page">
+      <div class="login-card">
+        <div class="login-header">
+          <div class="logo-circle">♥</div>
+          <h1>CardiovasHora</h1>
+          <p>AI-Powered Cardiovascular Care</p>
+        </div>
+
+        <div class="login-tabs" role="tablist">
+          <button class="login-tab active" role="tab" aria-selected="true" type="button">เข้าสู่ระบบ</button>
+          <button class="login-tab" role="tab" aria-selected="false" type="button">ลงทะเบียน</button>
+        </div>
+
+        <div class="login-body">
+          <form id="login-form" novalidate>
+            <div class="form-group" style="margin-bottom:1rem">
+              <label class="form-label" for="login-email">อีเมล</label>
+              <input type="email" id="login-email" placeholder="your.email@example.com" autocomplete="email">
+            </div>
+            <div class="form-group" style="margin-bottom:1.25rem">
+              <label class="form-label" for="login-password">รหัสผ่าน</label>
+              <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <div class="login-form-meta">
+              <label class="remember-label" for="remember-me">
+                <input type="checkbox" id="remember-me">
+                <span>จดจำฉันไว้</span>
+              </label>
+              <a href="#" class="link-forgot">ลืมรหัสผ่าน?</a>
+            </div>
+            <button type="submit" id="login-submit" class="btn btn-accent btn-full btn-lg">
+              เข้าสู่ระบบ
+            </button>
+          </form>
+
+          <div class="or-divider">หรือเข้าสู่ระบบด้วย</div>
+          <div class="flex gap-2">
+            <button class="social-btn" type="button">
+              <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M44.5 20H24v8.5h11.8C34.7 33.9 30 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 5.1 29.6 3 24 3 12.4 3 3 12.4 3 24s9.4 21 21 21c10.5 0 20-7.5 20-21 0-1.4-.1-2.7-.5-4z"/></svg>
+              Google
+            </button>
+            <button class="social-btn" type="button">
+              <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#3b5998" d="M42 0H6C2.7 0 0 2.7 0 6v36c0 3.3 2.7 6 6 6h18V30h-6v-7h6v-5c0-6 3.7-9.3 9-9.3 2.6 0 5.3.5 7.9.9v7.2h-4.4c-2.9 0-3.5 1.4-3.5 3.4V23h7l-1 7h-6v18H42c3.3 0 6-2.7 6-6V6c0-3.3-2.7-6-6-6z"/></svg>
+              Facebook
+            </button>
+          </div>
+
+          <div class="login-info-box">
+            <strong>สำหรับแพทย์:</strong> ลงทะเบียนเพื่อเข้าถึงฟีเจอร์จัดการผู้ป่วยและเครื่องมือวิจัยขั้นสูง
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/api/api.js"></script>
+  <script src="js/common/router.js"></script>
+  <script src="js/api/auth.js"></script>
+  <script src="js/pages/login.js"></script>
+</body>
+</html>
+
+

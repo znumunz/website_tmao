@@ -1,0 +1,80 @@
+﻿<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CardiovasHora — AI-Powered Cardiovascular Risk Prediction สำหรับแพทย์">
+  <title>CardiovasHora | Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/chatbot.css">
+  <script>window.APP_ROOT = './';</script>
+</head>
+<body class="sidebar-visible" data-page="chatbot">
+  <div data-navbar-slot></div>
+
+  <section id="page-chatbot" class="page" aria-label="AI Research Chatbot">
+    <div class="chat-layout">
+      <aside class="chat-sidebar" aria-label="Chat suggestions">
+        <div>
+          <div class="chat-sidebar-title">✨ AI Research Assistant</div>
+          <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.25rem">ถามคำถามเกี่ยวกับสุขภาพหัวใจและงานวิจัย</p>
+        </div>
+
+        <div>
+          <p class="sidebar-section-label">💡 Suggested Prompts</p>
+          <div style="display:flex;flex-direction:column;gap:0.4rem">
+            <button class="prompt-chip" type="button">TMAO กับโรคหัวใจสัมพันธ์กันอย่างไร?</button>
+            <button class="prompt-chip" type="button">สรุปงานวิจัย cardiovascular ล่าสุด</button>
+            <button class="prompt-chip" type="button">แนะนำกลยุทธ์ป้องกันสำหรับ TMAO สูง</button>
+            <button class="prompt-chip" type="button">ML ทำนายความเสี่ยงโรคหัวใจอย่างไร?</button>
+            <button class="prompt-chip" type="button">ทางเลือกการรักษาโรคหัวใจล่าสุด?</button>
+          </div>
+        </div>
+
+        <div>
+          <p class="sidebar-section-label">📚 Recent Research</p>
+          <div class="research-item">
+            <div class="research-item-title">TMAO and Cardiovascular Disease Risk</div>
+            <div class="research-item-meta">Nature Medicine • 2024</div>
+          </div>
+          <div class="research-item">
+            <div class="research-item-title">Machine Learning in Cardiovascular Risk Prediction</div>
+            <div class="research-item-meta">JAMA Cardiology • 2025</div>
+          </div>
+          <div class="research-item">
+            <div class="research-item-title">LightGBM for Clinical Risk Scoring</div>
+            <div class="research-item-meta">Lancet Digital Health • 2025</div>
+          </div>
+        </div>
+
+        <div style="margin-top:auto;padding:0.75rem;background:var(--bg-elevated);border-radius:var(--radius-sm);font-size:0.75rem;color:var(--text-muted)">
+          📄 AI นี้ใช้ข้อมูลจากเอกสารวิทยาศาสตร์และวรรณกรรมการแพทย์เพื่อให้คำตอบที่มีหลักฐานสนับสนุน
+        </div>
+      </aside>
+
+      <div class="chat-main">
+        <div class="chat-messages" id="chat-messages" role="log" aria-label="Chat messages" aria-live="polite"></div>
+        <div class="chat-input-area">
+          <div class="chat-input-row">
+            <input type="text" id="chat-input" placeholder="ถามเกี่ยวกับสุขภาพหัวใจและ TMAO..." aria-label="Type your message" autocomplete="off">
+            <button class="chat-send-btn" id="chat-send" aria-label="Send message" type="button">➤</button>
+          </div>
+          <p class="chat-disclaimer">AI responses are for informational purposes only and not medical advice</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/config.js"></script>
+  <script src="js/api/api.js"></script>
+  <script src="js/common/router.js"></script>
+  <script src="js/api/chatbot.js"></script>
+  <script src="js/api/auth.js"></script>
+  <script src="js/pages/chatbot.js"></script>
+</body>
+</html>
+
+
