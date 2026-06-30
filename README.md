@@ -23,28 +23,31 @@ CardiovasHora/
 |   |-- result.css
 |   `-- chatbot.css
 |-- js/
-|   |-- config.js
 |   |-- api/
 |   |   |-- api.js
 |   |   |-- auth.js
 |   |   `-- chatbot.js
+|   |-- runtime-config.js
 |   |-- common/
 |   |   `-- router.js
+|   |-- pages/
+|   |   |-- index.js
+|   |   |-- login.js
+|   |   |-- dashboard.js
+|   |   |-- predict.js
+|   |   |-- result.js
+|   |   `-- chatbot.js
 |   |-- services/
 |   |   `-- assessment.js
-|   `-- pages/
-|       |-- index.js
-|       |-- login.js
-|       |-- dashboard.js
-|       |-- predict.js
-|       |-- result.js
-|       `-- chatbot.js
+|-- scripts/
+|   `-- generate-runtime-config.js
 |-- components/
 |   `-- navbar.html
 |-- assets/
 |   |-- images/
 |   |-- icons/
 |   `-- fonts/
+|-- vercel.json
 `-- README.md
 ```
 
@@ -54,10 +57,10 @@ CardiovasHora/
 - `components/navbar.html` is injected by `js/common/router.js` on pages that include a navbar slot.
 - `js/common/router.js` handles page navigation, dark mode, mobile menu, sidebar state, and logout routing.
 - `js/api/auth.js` keeps the current mock login behavior using `sessionStorage`.
-- `js/api/chatbot.js` contains the existing n8n webhook communication. The webhook URL is unchanged.
+- `scripts/generate-runtime-config.js` reads `CHATBOT_WEBHOOK_URL` and generates `js/runtime-config.js` during the Vercel build.
+- `js/api/chatbot.js` contains the existing n8n webhook communication and reads the webhook URL from `js/runtime-config.js`.
 - `js/pages/chatbot.js` handles only chatbot UI interactions and calls `AppChatbotApi`.
 - `js/services/assessment.js` contains reusable BMI and assessment validation logic.
-- `js/config.js` stores shared app configuration such as the chatbot webhook URL.
 
 ## Pages
 
@@ -85,5 +88,5 @@ http://localhost:8000
 ## Notes
 
 - The login page is UI-only and does not authenticate against a backend.
-- The chatbot still uses the existing n8n webhook.
+- The chatbot still uses the existing n8n webhook, but the URL now lives in Vercel Environment Variables and is written into `js/runtime-config.js` at build time.
 - Backend integrations should be added through `js/api/` in the future.

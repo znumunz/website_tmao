@@ -3,11 +3,11 @@
 /*
   TODO: Connect future ML inference endpoints here if the backend expands.
   TODO: Add Supabase or other persistence calls here when needed.
-
-  Chatbot currently talks directly to the existing n8n webhook.
 */
 
-const CHAT_WEBHOOK_URL = window.AppConfig?.chatbotWebhookUrl || 'https://rnd-n8n.kku.ac.th/webhook/chat';
+function getChatbotWebhookUrl() {
+  return window.AppRuntimeConfig?.chatbotWebhookUrl || '';
+}
 
 function formatWebhookResult(data) {
   if (data == null) return 'ไม่พบข้อความตอบกลับจากระบบ';
@@ -61,6 +61,12 @@ function localFallbackResponse(message) {
 
 window.AppChatbotApi = {
   async sendChatMessage(message) {
+    const CHAT_WEBHOOK_URL = getChatbotWebhookUrl();
+
+    if (!CHAT_WEBHOOK_URL) {
+      throw new Error('Missing chatbot webhook URL. Make sure js/runtime-config.js is generated from CHATBOT_WEBHOOK_URL before loading js/api/chatbot.js.');
+    }
+
     const response = await AppApi.request(CHAT_WEBHOOK_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
