@@ -27,7 +27,6 @@ CardiovasHora/
 |   |   |-- api.js
 |   |   |-- auth.js
 |   |   `-- chatbot.js
-|   |-- runtime-config.js
 |   |-- common/
 |   |   `-- router.js
 |   |-- pages/
@@ -39,8 +38,8 @@ CardiovasHora/
 |   |   `-- chatbot.js
 |   |-- services/
 |   |   `-- assessment.js
-|-- scripts/
-|   `-- generate-runtime-config.js
+|-- api/
+|   `-- chatbot.js
 |-- components/
 |   `-- navbar.html
 |-- assets/
@@ -57,8 +56,8 @@ CardiovasHora/
 - `components/navbar.html` is injected by `js/common/router.js` on pages that include a navbar slot.
 - `js/common/router.js` handles page navigation, dark mode, mobile menu, sidebar state, and logout routing.
 - `js/api/auth.js` keeps the current mock login behavior using `sessionStorage`.
-- `scripts/generate-runtime-config.js` reads `CHATBOT_WEBHOOK_URL` and generates `js/runtime-config.js` during the Vercel build.
-- `js/api/chatbot.js` contains the existing n8n webhook communication and reads the webhook URL from `js/runtime-config.js`.
+- `api/chatbot.js` runs on Vercel and proxies chatbot messages to the webhook using `CHATBOT_WEBHOOK_URL`.
+- `js/api/chatbot.js` sends messages to `/api/chatbot`.
 - `js/pages/chatbot.js` handles only chatbot UI interactions and calls `AppChatbotApi`.
 - `js/services/assessment.js` contains reusable BMI and assessment validation logic.
 
@@ -88,5 +87,5 @@ http://localhost:8000
 ## Notes
 
 - The login page is UI-only and does not authenticate against a backend.
-- The chatbot still uses the existing n8n webhook, but the URL now lives in Vercel Environment Variables and is written into `js/runtime-config.js` at build time.
+- The chatbot still uses the existing n8n webhook, but the URL now lives only in Vercel Environment Variables and is accessed by the serverless function.
 - Backend integrations should be added through `js/api/` in the future.

@@ -6,7 +6,7 @@
 */
 
 function getChatbotWebhookUrl() {
-  return window.AppRuntimeConfig?.chatbotWebhookUrl || '';
+  return './api/chatbot';
 }
 
 function formatWebhookResult(data) {
@@ -62,10 +62,6 @@ function localFallbackResponse(message) {
 window.AppChatbotApi = {
   async sendChatMessage(message) {
     const CHAT_WEBHOOK_URL = getChatbotWebhookUrl();
-
-    if (!CHAT_WEBHOOK_URL) {
-      throw new Error('Missing chatbot webhook URL. Make sure js/runtime-config.js is generated from CHATBOT_WEBHOOK_URL before loading js/api/chatbot.js.');
-    }
 
     const response = await AppApi.request(CHAT_WEBHOOK_URL, {
       method: 'POST',
